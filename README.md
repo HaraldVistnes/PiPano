@@ -22,15 +22,15 @@ L293D
 Connect the L293D to the following Raspberry PI GPIO ports:
 
  1 ENABLE1 -> 5v0
- 2 INPUT1  -> #4
+ 2 INPUT1  -> #24
  3 OUTPUT1 -> Coil A #1  (blue)
  4 GND     -> GND
  5 GND     -> GND
  6 OUTPUT2 -> Coil A #2  (white)
- 7 INPUT2  -> #17
+ 7 INPUT2  -> #25
  8 Vs      -> battery +
  9 ENABLE2 -> 5v0
-10 INPUT3  -> #24
+10 INPUT3  -> #18
 11 OUTPUT3 -> Coil B #2  (blue black)
 12 GND     -> GND
 13 GND     -> GND

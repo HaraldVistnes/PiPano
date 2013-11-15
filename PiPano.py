@@ -6,10 +6,10 @@ dir = "images"
 
 GPIO.setmode(GPIO.BCM)
 
-coilA1Pin = 4
-coilA2Pin = 17
+coilA1Pin = 24
+coilA2Pin = 25
 coilB1Pin = 23
-coilB2Pin = 24
+coilB2Pin = 18
 
 GPIO.setup(coilA1Pin, GPIO.OUT)
 GPIO.setup(coilA2Pin, GPIO.OUT)
