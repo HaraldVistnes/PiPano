@@ -2,7 +2,10 @@ import RPi.GPIO as GPIO
 import time
 import os
 
-dir = "images"
+dir = "/mnt/usb/images"
+if (not os.path.isdir(dir)):
+    dir = "/home/pi/images"
+
 
 GPIO.setmode(GPIO.BCM)
 
@@ -48,25 +51,30 @@ def setStep(w1, w2, w3, w4):
         GPIO.output(coilB1Pin, w3) 
         GPIO.output(coilB2Pin, w4)
 
-def release():
+def release(arg):
         setStep(0, 0, 0, 0)
+
+def takepic():
+	os.system("raspistill -o " + dir + "/img_" + timestamp + "_" + arg + ".jpg" + opt)
+
+
 
 delay = 0.01
 steps = 1
-#os.system("raspistill -o images/img_" + timestamp + "_1.jpg" + opt)
+os.system("raspistill -o " + dir + "/img_" + timestamp + "_1.jpg" + opt)
 print 'forward'
 forward(delay, steps)
 time.sleep(1.0)
 
-#os.system("raspistill -o images/img_" + timestamp + "_2.jpg" + opt)
+os.system("raspistill -o " + dir + "/img_" + timestamp + "_2.jpg" + opt)
 print 'forward'
 forward(delay, steps)
 time.sleep(1.0)
-#os.system("raspistill -o images/img_" + timestamp + "_3.jpg" + opt)
+os.system("raspistill -o " + dir + "/img_" + timestamp + "_3.jpg" + opt)
 print 'forward'
 forward(delay, steps)
 time.sleep(1.0)
-#os.system("raspistill -o images/img_" + timestamp + "_4.jpg" + opt)
+os.system("raspistill -o " + dir + "/img_" + timestamp + "_4.jpg" + opt)
 print 'backward'
 backward(delay, 3*steps)
 
