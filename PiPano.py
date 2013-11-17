@@ -2,6 +2,18 @@ import RPi.GPIO as GPIO
 import time
 import os
 
+# range in degrees
+range = 180
+
+# degrees per step
+degreesPerStep = 7.5*4
+
+# total number of steps
+numSteps = range / degreesPerStep
+
+# motor speed
+delay = 0.01
+
 dir = "/mnt/usb/images"
 if (not os.path.isdir(dir)):
     dir = "/home/pi/images"
@@ -51,32 +63,24 @@ def setStep(w1, w2, w3, w4):
         GPIO.output(coilB1Pin, w3) 
         GPIO.output(coilB2Pin, w4)
 
-def release(arg):
+def release():
         setStep(0, 0, 0, 0)
 
-def takepic():
+def capture(arg):
 	os.system("raspistill -o " + dir + "/img_" + timestamp + "_" + arg + ".jpg" + opt)
 
 
 
-delay = 0.01
-steps = 1
-os.system("raspistill -o " + dir + "/img_" + timestamp + "_1.jpg" + opt)
-print 'forward'
-forward(delay, steps)
-time.sleep(1.0)
+# rotate camera range/2 counterclockwise
 
-os.system("raspistill -o " + dir + "/img_" + timestamp + "_2.jpg" + opt)
-print 'forward'
-forward(delay, steps)
-time.sleep(1.0)
-os.system("raspistill -o " + dir + "/img_" + timestamp + "_3.jpg" + opt)
-print 'forward'
-forward(delay, steps)
-time.sleep(1.0)
-os.system("raspistill -o " + dir + "/img_" + timestamp + "_4.jpg" + opt)
-print 'backward'
-backward(delay, 3*steps)
+backward(delay, numSteps/2)
+
+for x in range(0, numSteps):
+	capture(x+1)
+	forward(delay, 1)
+	time.sleep(1.0)
+
+backward(delay, numSteps/2)
 
 release()
 
