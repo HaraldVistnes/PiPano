@@ -4,6 +4,7 @@ import os
 
 # range in degrees
 range = 180
+print 'range: ' + range + ' degrees'
 
 # degrees per step
 degreesPerStep = 7.5*4
@@ -11,6 +12,8 @@ degreesPerStep = 7.5*4
 # total number of steps
 numSteps = range / degreesPerStep
 halfSteps = numSteps/2
+print '#steps: ' + numSteps
+print 'halfSteps: ' + halfSteps
 
 # motor speed
 delay = 0.01
@@ -74,13 +77,16 @@ def capture(arg):
 
 # rotate camera range/2 counterclockwise
 
+print 'Turn 90 degrees CCW'
 backward(delay, halfSteps)
 
 for x in range(0, numSteps):
+	print 'Step ' + x
 	capture(x+1)
 	forward(delay, 1)	
 	time.sleep(1.0)
 
+print 'Turn back to start position'
 backward(delay, halfSteps)
 
 release()
