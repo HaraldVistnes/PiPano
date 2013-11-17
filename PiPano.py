@@ -4,7 +4,7 @@ import os
 import math
 
 # range in degrees
-totalRangeInDegrees = 180
+totalRangeInDegrees = 240
 print 'range: ' + str(totalRangeInDegrees) + ' degrees'
 
 # degrees per step
