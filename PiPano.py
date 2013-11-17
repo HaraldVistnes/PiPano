@@ -3,14 +3,14 @@ import time
 import os
 
 # range in degrees
-range = 180
-print 'range: ' + str(range) + ' degrees'
+totalRangeInDegrees = 180
+print 'range: ' + str(totalRangeInDegrees) + ' degrees'
 
 # degrees per step
 degreesPerStep = 7.5*4
 
 # total number of steps
-numSteps = range / degreesPerStep
+numSteps = totalRangeInDegrees / degreesPerStep
 halfSteps = numSteps/2
 print '#steps: ' + str(numSteps)
 print 'halfSteps: ' + str(halfSteps)
@@ -75,23 +75,25 @@ def capture(arg):
 
 
 
-# rotate camera range/2 counterclockwise
+try:
 
-print 'Turn 90 degrees CCW'
-backward(delay, halfSteps)
+	# rotate camera range/2 counterclockwise
 
-for x in range(0, numSteps):
-	print 'Step ' + str(x)
-	capture(str(x+1))
-	forward(delay, 1)	
-	time.sleep(1.0)
+	print 'Turn 90 degrees CCW'
+	backward(delay, halfSteps)
 
-print 'Turn back to start position'
-backward(delay, halfSteps)
+	for i in range(0, numSteps):
+		print 'Step ' + str(i)
+		capture(str(x+1))
+		forward(delay, 1)	
+		time.sleep(1.0)
 
-release()
+	print 'Turn back to start position'
+	backward(delay, halfSteps)
 
-GPIO.cleanup()
+finally:
+	release()
+	GPIO.cleanup()
 
 #for img in os.listdir(dir):
 #       filename = dir + "/" + img
