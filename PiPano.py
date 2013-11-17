@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import os
+import math
 
 # range in degrees
 totalRangeInDegrees = 180
