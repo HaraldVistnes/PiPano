@@ -4,7 +4,7 @@ import os
 
 # range in degrees
 range = 180
-print 'range: ' + range + ' degrees'
+print 'range: ' + str(range) + ' degrees'
 
 # degrees per step
 degreesPerStep = 7.5*4
@@ -12,8 +12,8 @@ degreesPerStep = 7.5*4
 # total number of steps
 numSteps = range / degreesPerStep
 halfSteps = numSteps/2
-print '#steps: ' + numSteps
-print 'halfSteps: ' + halfSteps
+print '#steps: ' + str(numSteps)
+print 'halfSteps: ' + str(halfSteps)
 
 # motor speed
 delay = 0.01
@@ -81,8 +81,8 @@ print 'Turn 90 degrees CCW'
 backward(delay, halfSteps)
 
 for x in range(0, numSteps):
-	print 'Step ' + x
-	capture(x+1)
+	print 'Step ' + str(x)
+	capture(str(x+1))
 	forward(delay, 1)	
 	time.sleep(1.0)
 
