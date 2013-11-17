@@ -82,12 +82,13 @@ try:
 
 	print 'Turn 90 degrees CCW'
 	backward(delay, halfSteps)
+	time.sleep(0.5)
 
 	for i in range(0, numSteps):
 		print 'Step ' + str(i)
-		capture(str(x+1))
+		capture(str(i+1))
 		forward(delay, 1)	
-		time.sleep(1.0)
+		time.sleep(0.5)
 
 	print 'Turn back to start position'
 	backward(delay, halfSteps)
