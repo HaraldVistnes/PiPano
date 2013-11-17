@@ -10,6 +10,7 @@ degreesPerStep = 7.5*4
 
 # total number of steps
 numSteps = range / degreesPerStep
+halfSteps = numSteps/2
 
 # motor speed
 delay = 0.01
@@ -73,14 +74,14 @@ def capture(arg):
 
 # rotate camera range/2 counterclockwise
 
-backward(delay, numSteps/2)
+backward(delay, halfSteps)
 
 for x in range(0, numSteps):
 	capture(x+1)
 	forward(delay, 1)
 	time.sleep(1.0)
 
-backward(delay, numSteps/2)
+backward(delay, halfSteps)
 
 release()
 
