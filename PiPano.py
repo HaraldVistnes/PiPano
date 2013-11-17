@@ -11,7 +11,7 @@ degreesPerStep = 7.5*4
 
 # total number of steps
 numSteps = totalRangeInDegrees / degreesPerStep
-halfSteps = numSteps/2
+halfSteps = math.ceil(numSteps/2)
 print '#steps: ' + str(numSteps)
 print 'halfSteps: ' + str(halfSteps)
 
