@@ -3,18 +3,7 @@ import time
 import os
 import math
 
-# range in degrees
-totalRangeInDegrees = 240
-print 'range: ' + str(totalRangeInDegrees) + ' degrees'
-
-# degrees per step
-degreesPerStep = 7.5*4
-
-# total number of steps
-numSteps = int(round(totalRangeInDegrees / degreesPerStep))
-halfSteps = int(math.ceil(numSteps/2))
-print '#steps: ' + str(numSteps)
-print 'halfSteps: ' + str(halfSteps)
+int halfSteps = 4
 
 # motor speed
 delay = 0.01
@@ -84,7 +73,7 @@ try:
 	backward(delay, halfSteps)
 	time.sleep(0.5)
 
-	for i in range(0, numSteps):
+	for i in range(0, halfSteps*2+1):
 		print 'Step ' + str(i)
 		capture(str(i+1))
 		forward(delay, 1)	
