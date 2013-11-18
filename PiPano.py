@@ -3,7 +3,7 @@ import time
 import os
 import math
 
-int halfSteps = 4
+halfSteps = 4
 
 # motor speed
 delay = 0.01
