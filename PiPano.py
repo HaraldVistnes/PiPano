@@ -3,7 +3,7 @@ import time
 import os
 import math
 
-halfSteps = 4
+halfSteps = 3
 
 # motor speed
 delay = 0.01
@@ -79,7 +79,7 @@ try:
 		forward(delay, 1)	
 		time.sleep(0.5)
 
-	capture("last")
+	capture(str(halfSteps*2+1))
 	print 'Turn back to start position'
 	backward(delay, halfSteps)
 
