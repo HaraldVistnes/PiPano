@@ -61,7 +61,10 @@ def release():
 	setStep(0, 0, 0, 0)
 
 def capture(arg):
-	os.system("raspistill -o " + dir + "/img_" + timestamp + "_" + arg + ".jpg" + opt)
+	localdir = dir + "/" + arg
+	if not os.path.exists(localdir):
+		os.makedirs(localdir)
+	os.system("raspistill -o " + localdir + "/img_" + timestamp + "_" + arg + ".jpg" + opt)
 
 
 
