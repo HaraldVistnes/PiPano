@@ -37,7 +37,7 @@ class PhotoCell:
         
         # set the pin to low
         GPIO.setup(self.pin, GPIO.OUT)
-        GPIO.ouput(self.pin, GPIO.LOW)
+        GPIO.output(self.pin, GPIO.LOW)
         time.sleep(0.1)
 
         # read from pin
@@ -54,4 +54,5 @@ if __name__ == "__main__":
     pc = PhotoCell(_defaultPin)  
     while True:
         print pc.RCtime()
+    GPIO.cleanup()
 
