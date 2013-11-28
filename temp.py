@@ -16,12 +16,13 @@ _defaultPin = 17
 class DS18B20:
     def __init__(self, pin):
         self.pin = pin
-        self.base_dir = '/sys/bus/w1/devices/'
-        self.device_folder = glob.glob(self.base_dir + '28*')[0]
-        self.device_file = self.device_folder + '/w1_slave'
 
         os.system('modprobe w1-gpio')
         os.system('modprobe w1-therm')  
+
+        self.base_dir = '/sys/bus/w1/devices/'
+        self.device_folder = glob.glob(self.base_dir + '28*')[0]
+        self.device_file = self.device_folder + '/w1_slave'
 
     def read_temp_raw(self):
         f = open(self.device_file, 'r')
