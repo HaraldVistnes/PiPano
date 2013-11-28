@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-""" Module for reading values from a photocell 
+""" Module for reading values from a photocell using RC timing
+
+    Copyright (C) 2013 Harald Vistnes <harald.vistnes@gmail.com>
 
     This implementation is based on the tutorial
     http://learn.adafruit.com/basic-resistor-sensor-reading-on-raspberry-pi/basic-photocell-reading
@@ -19,8 +21,6 @@
     returned from RCtime.
 
     RCtime - low value means more light than a higher value
-
-    Copyright (C) 2013 Harald Vistnes <harald.vistnes@gmail.com>
 """
 
 import RPi.GPIO as GPIO, time, os 
