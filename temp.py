@@ -8,7 +8,7 @@
 
 """
 
-import RPi.GPIO as GPIO, time, os 
+import RPi.GPIO as GPIO, time, os, glob
 
 # digital pin used by photocell
 _defaultPin = 17
