@@ -19,6 +19,8 @@
     returned from RCtime.
 
     RCtime - low value means more light than a higher value
+
+    Copyright (C) 2013 Harald Vistnes <harald.vistnes@gmail.com>
 """
 
 import RPi.GPIO as GPIO, time, os 
