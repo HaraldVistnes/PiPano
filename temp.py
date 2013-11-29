@@ -10,13 +10,8 @@
 
 import RPi.GPIO as GPIO, time, os, glob
 
-# digital pin used by photocell
-_defaultPin = 17
-
 class DS18B20:
-    def __init__(self, pin):
-        self.pin = pin
-
+    def __init__(self):
         os.system('modprobe w1-gpio')
         os.system('modprobe w1-therm')  
 
@@ -33,7 +28,7 @@ class DS18B20:
 if __name__ == "__main__":
     # script
     GPIO.setmode(GPIO.BCM)
-    ds18b20 = DS18B20(_defaultPin)
+    ds18b20 = DS18B20()
     while True:
         print ds18b20.read_temp_raw()
         time.sleep(1.0)
