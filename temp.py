@@ -25,8 +25,8 @@ class DS18B20:
         f.close()
         return lines
 
-    def read_temp():
-        lines = read_temp_raw()
+    def read_temp(self):
+        lines = read_temp_raw(self)
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
             lines = read_temp_raw()
