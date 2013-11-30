@@ -114,6 +114,7 @@ try:
     read_photocell()
 
     # read temperature
+    read_temp()
 
     # rotate camera range/2 counterclockwise
 
