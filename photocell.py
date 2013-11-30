@@ -32,6 +32,9 @@ class PhotoCell:
     def __init__(self, pin):
         self.pin = pin
 	
+    def __init__(self):
+        self.__init__(_defaultPin)
+
     # returns a pseudo-timing of the time required for the pin
     # to get from low to high
     def RCtime(self):
