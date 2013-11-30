@@ -26,7 +26,7 @@
 import RPi.GPIO as GPIO, time, os 
 
 # digital pin used by photocell
-_defaultPin = 4
+_defaultPin = 17
 
 class PhotoCell:
     def __init__(self, pin):
