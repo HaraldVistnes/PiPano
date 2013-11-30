@@ -23,7 +23,7 @@ class DS18B20:
         self.base_dir = '/sys/bus/w1/devices/'
 
     def read_temp_raw(self, sensor_id):
-        filename = self.self.base_dir + sensor_id + '/w1_slave'
+        filename = self.base_dir + sensor_id + '/w1_slave'
         f = open(filename, 'r')
         lines = f.readlines()
         f.close()
