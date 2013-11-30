@@ -9,9 +9,15 @@ halfSteps = 3
 delay = 0.01
 
 dir = "/mnt/usb/images"
+
+# mount the USB stick if it is not found
+if (not os.path.isdir(dir)):
+    os.system("mount -t vfat /dev/sda1 /mnt/usb/")
+
+# if still no success, the USB stick is probably removed,
+# use a folder on the memory card
 if (not os.path.isdir(dir)):
 	dir = "/home/pi/images"
-
 
 GPIO.setmode(GPIO.BCM)
 
