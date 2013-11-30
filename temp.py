@@ -30,10 +30,10 @@ class DS18B20:
         return lines
 
     def read_temp(self, sensor_id):
-        lines = self.read_temp_raw()
+        lines = self.read_temp_raw(sensor_id)
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
-            lines = self.read_temp_raw()
+            lines = self.read_temp_raw(sensor_id)
         equals_pos = lines[1].find('t=')
         if equals_pos != -1:
             temp_string = lines[1][equals_pos+2:]
