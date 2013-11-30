@@ -93,7 +93,7 @@ def read_photocell():
         os.makedirs(dir_sensors)
     filename = dir_sensors + "/photocell_" + time.strftime("%Y%m%d", now)
     with open(filename, 'a') as pcfile:
-        pcfile.write(time.strftime("%H%M", now) + ', ' + rctime)
+        pcfile.write(time.strftime("%H%M", now) + ', ' + str(rctime))
 
 try:
     # read light from photocell
