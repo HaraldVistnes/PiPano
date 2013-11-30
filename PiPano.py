@@ -12,6 +12,7 @@ import time
 import os
 import math
 import photocell
+import temp
 
 halfSteps = 3
 
@@ -45,6 +46,9 @@ GPIO.setup(coilB2Pin, GPIO.OUT)
 
 # instantiate photocell
 pc = photocell.PhotoCell()
+
+# instantiate temp
+t = temp.DS18B20()
 
 now = time.localtime(time.time())
 timestamp = time.strftime("%Y%m%d_%H%M", now)
@@ -94,11 +98,22 @@ def read_photocell():
     filename = dir_sensors + "/photocell_" + time.strftime("%Y%m%d", now)
     with open(filename, 'a') as pcfile:
         pcfile.write(time.strftime("%H%M", now) + ', ' + str(rctime) + '\n')
+    print 'Read photocell: ' + str(rctime)
+
+def read_temp():
+    temps = t.read_temps()
+    if not os.path.exists(dir_sensors):
+        os.makedirs(dir_sensors)
+    filename = dir_sensors + "/temp_" + time.strftime("%Y%m%d", now)
+    with open(filename, 'a') as tempfile:
+        tempfile.write(time.strftime("%H%M", now) + ', ' + str(temps[0]) + ', ' + str(temps[1]) + '\n')
+    print 'Read temperature: ' + str(temps[0]) + ', ' + str(temps[1])
 
 try:
     # read light from photocell
-    print 'Read photocell'
     read_photocell()
+
+    # read temperature
 
     # rotate camera range/2 counterclockwise
 
