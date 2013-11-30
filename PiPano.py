@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+
+""" Script for capturing a panorama scene using a stepper motor
+    to rotate the Raspberry PI Camera module
+
+    Copyright (C) 2013 Harald Vistnes <harald.vistnes@gmail.com>
+
+"""
+
 import RPi.GPIO as GPIO
 import time
 import os
