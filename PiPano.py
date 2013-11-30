@@ -93,10 +93,11 @@ def read_photocell():
         os.makedirs(dir_sensors)
     filename = dir_sensors + "/photocell_" + time.strftime("%Y%m%d", now)
     with open(filename, 'a') as pcfile:
-        pcfile.write(time.strftime("%H%M", now) + ', ' + str(rctime))
+        pcfile.write(time.strftime("%H%M", now) + ', ' + str(rctime) + '\n')
 
 try:
     # read light from photocell
+    print 'Read photocell'
     read_photocell()
 
     # rotate camera range/2 counterclockwise
