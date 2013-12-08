@@ -8,6 +8,7 @@
 
 import os
 import glob
+from optparse import OptionParser
 
 dx = 20
 dy = 20
@@ -21,6 +22,7 @@ dy_date = 18
 pointsize_location = 32
 dy_location = 34
 
+fps = 15
 
 def monthstring(month):
     months = [ "", "januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember" ]
@@ -36,15 +38,15 @@ def make_timestamp(filename):
     return day + ". " + month + " " + year, hour + ":" + minute
 
 def make_outfilename(infilename, index):
-    dir,basename = os.path.split(infilename)
-    return os.path.join(dir,"p_" + str(index) + ".jpg")
+    folder,basename = os.path.split(infilename)
+    return os.path.join(folder,"p_" + str(index) + ".jpg")
     
 def annotate(infilename, index, location):
     date,time = make_timestamp(infilename)
     outfilename = make_outfilename(infilename, index)
     x = dx
     y = dy    
-    args = " -resize 1920x1080 -fill white -undercolor '#00000000' -gravity SouthWest"
+    args = " -resize 1600x1200 -fill white -undercolor '#00000000' -gravity SouthWest"
 
     args += " -pointsize " + str(pointsize_time) + " -annotate +" + str(x) + "+" + str(y) + " '" + time + "'"
     y += dy_time
@@ -60,11 +62,43 @@ def annotate(infilename, index, location):
 
 def annotate_dir(d, location):
     files = glob.glob(d)
+    files.sort()
     index = 1
     for f in files:
+        print 'Annotating ' + f
         annotate(f, index, location)
         index = index+1
 
+def make_video(folder, videofile):
+    os.system("ls -1tr " + folder + "p*.jpg > " + folder + "files.txt")
+    print 'Creating uncompresed video...'
+    os.system("mencoder -nosound -noskip -oac copy -ovc copy -o " + folder + "tmp_output.avi -mf fps=" + str(fps) + " 'mf://@" + folder + "files.txt'")
+    print 'Compressing video...'
+    os.system("mencoder -ovc x264 " + folder + "tmp_output.avi -o " + folder + videofile)
+    print 'Cleaning up...'
+    os.remove(folder + "tmp_output.avi")
+
+def main():
+    parser = OptionParser()
+    parser.add_option("-i", "--input", dest="indir", help="Folder containing input images")
+    parser.add_option("-l", "--location", dest="location", help="Location string to be annotated")
+    parser.add_option("-v", "--video", dest="avifile", help="Generate timelapse video")
+    parser.add_option("-f", "--fps", dest="fps", help="Video fps")
+
+    (options, args) = parser.parse_args()
+
+    if options.fps:
+        fps = options.fps
+
+    if options.indir:
+        if options.indir[-1] != '/':
+            options.indir += '/'
+
+        annotate_dir(options.indir + "img_*.jpg", options.location)
+
+        if options.avifile:
+            make_video(options.indir, options.avifile)
+
 if __name__ == "__main__":
-    annotate_dir('/media/harald/DATAPART1/PiPano/20131207/images/1/img_*.jpg', "Kirkehamn")
+    main()
 
