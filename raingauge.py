@@ -13,15 +13,19 @@
 
 import RPi.GPIO as GPIO, time, os, glob
 
+channel = 22
 counter = 0
+
+def my_callback(channel):
+    print 'Callback'
 
 if __name__ == "__main__":
     # script
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.add_event_detect(channel, GPIO.RISING, callback=my_callback)
 
     while (True):
-        GPIO.wait_for_edge(22, GPIO.RISING)
-        counter = counter + 1
-        print('PLING ' + str(counter))
+        print('.')
+        time.sleep(0.5)
 
