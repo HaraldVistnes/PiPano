@@ -23,7 +23,7 @@ if __name__ == "__main__":
     # script
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.add_event_detect(channel, GPIO.FALLING, callback=my_callback)
+    GPIO.add_event_detect(channel, GPIO.RISING, callback=my_callback)
 
     while (True):
         print('.')
