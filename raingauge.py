@@ -13,6 +13,7 @@
 
 import RPi.GPIO as GPIO, time, os, glob
 
+counter = 0
 
 if __name__ == "__main__":
     # script
@@ -21,5 +22,6 @@ if __name__ == "__main__":
 
     while (True):
         GPIO.wait_for_edge(22, GPIO.RISING)
-        print('PLING!')
+        counter = counter + 1
+        print('PLING ' + str(counter))
 
