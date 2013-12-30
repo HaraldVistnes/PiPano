@@ -14,11 +14,9 @@
 import RPi.GPIO as GPIO, time, os, glob
 
 channel = 22
-counter = 0
 
 def my_callback(channel):
-    counter = counter+1
-    print 'pling ' + counter
+    print 'pling!'
 
 if __name__ == "__main__":
     # script
