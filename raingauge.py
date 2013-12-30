@@ -17,15 +17,15 @@ channel = 22
 counter = 0
 
 def my_callback(channel):
-    print 'Callback'
+    counter = counter+1
+    print 'pling ' + counter
 
 if __name__ == "__main__":
     # script
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    #GPIO.add_event_detect(channel, GPIO.FALLING, callback=my_callback)
+    GPIO.add_event_detect(channel, GPIO.FALLING, callback=my_callback, bouncetime=300)
 
     while (True):
-        GPIO.wait_for_edge(channel, GPIO.FALLING)
-        print 'pling!'
+        time.sleep(1.0)
 
