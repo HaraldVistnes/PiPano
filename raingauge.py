@@ -22,7 +22,7 @@ def my_callback(channel):
 if __name__ == "__main__":
     # script
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.add_event_detect(channel, GPIO.RISING, callback=my_callback)
 
     while (True):
