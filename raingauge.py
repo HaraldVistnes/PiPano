@@ -26,6 +26,9 @@ if __name__ == "__main__":
     GPIO.add_event_detect(channel, GPIO.FALLING, callback=my_callback)
 
     while (True):
-        print('.')
+        if GPIO.input(channel):
+            print 'HIGH'
+        else:
+            print 'LOW'
         time.sleep(0.5)
 
